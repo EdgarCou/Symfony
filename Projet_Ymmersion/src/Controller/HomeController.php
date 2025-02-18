@@ -9,13 +9,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController {
 
-    #[Route('/', name: 'home')]
-    public function bonjour() {
-        return new Response("Bonjour à tous");
-    }
 
+    #[Route('/login', name: 'login')]
     public function login() {
 
     }
 
+    #[Route('/profile', name: 'profile')]
+    public function profile(): Response {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+
+        return $this->render('profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }
