@@ -17,9 +17,9 @@
             "ref": "8d96c0b51591ffc26794d865ba3ee7d193438a83"
         },
         "files": [
-            "config/packages/doctrine.yaml",
-            "src/Entity/.gitignore",
-            "src/Repository/.gitignore"
+            "./config/packages/doctrine.yaml",
+            "./src/Entity/.gitignore",
+            "./src/Repository/.gitignore"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -31,8 +31,8 @@
             "ref": "1d01ec03c6ecbd67c3375c5478c9a423ae5d6a33"
         },
         "files": [
-            "config/packages/doctrine_migrations.yaml",
-            "migrations/.gitignore"
+            "./config/packages/doctrine_migrations.yaml",
+            "./migrations/.gitignore"
         ]
     },
     "symfony/console": {
@@ -44,7 +44,7 @@
             "ref": "1781ff40d8a17d87cf53f8d4cf0c8346ed2bb461"
         },
         "files": [
-            "bin/console"
+            "./bin/console"
         ]
     },
     "symfony/flex": {
@@ -56,8 +56,8 @@
             "ref": "52e9754527a15e2b79d9a610f98185a1fe46622a"
         },
         "files": [
-            ".env",
-            ".env.dev"
+            "./.env",
+            "./.env.dev"
         ]
     },
     "symfony/form": {
@@ -69,7 +69,7 @@
             "ref": "7d86a6723f4a623f59e2bf966b6aad2fc461d36b"
         },
         "files": [
-            "config/packages/csrf.yaml"
+            "./config/packages/csrf.yaml"
         ]
     },
     "symfony/framework-bundle": {
@@ -81,14 +81,14 @@
             "ref": "87bcf6f7c55201f345d8895deda46d2adbdbaa89"
         },
         "files": [
-            "config/packages/cache.yaml",
-            "config/packages/framework.yaml",
-            "config/preload.php",
-            "config/routes/framework.yaml",
-            "config/services.yaml",
-            "public/index.php",
-            "src/Controller/.gitignore",
-            "src/Kernel.php"
+            "./config/packages/cache.yaml",
+            "./config/packages/framework.yaml",
+            "./config/preload.php",
+            "./config/routes/framework.yaml",
+            "./config/services.yaml",
+            "./public/index.php",
+            "./src/Controller/.gitignore",
+            "./src/Kernel.php"
         ]
     },
     "symfony/mailer": {
@@ -100,7 +100,7 @@
             "ref": "09051cfde49476e3c12cd3a0e44289ace1c75a4f"
         },
         "files": [
-            "config/packages/mailer.yaml"
+            "./config/packages/mailer.yaml"
         ]
     },
     "symfony/maker-bundle": {
@@ -121,8 +121,8 @@
             "ref": "21b72649d5622d8f7da329ffb5afb232a023619d"
         },
         "files": [
-            "config/packages/routing.yaml",
-            "config/routes.yaml"
+            "./config/packages/routing.yaml",
+            "./config/routes.yaml"
         ]
     },
     "symfony/security-bundle": {
@@ -134,8 +134,8 @@
             "ref": "2ae08430db28c8eb4476605894296c82a642028f"
         },
         "files": [
-            "config/packages/security.yaml",
-            "config/routes/security.yaml"
+            "./config/packages/security.yaml",
+            "./config/routes/security.yaml"
         ]
     },
     "symfony/twig-bundle": {
@@ -147,8 +147,8 @@
             "ref": "cab5fd2a13a45c266d45a7d9337e28dee6272877"
         },
         "files": [
-            "config/packages/twig.yaml",
-            "templates/base.html.twig"
+            "./config/packages/twig.yaml",
+            "./templates/base.html.twig"
         ]
     },
     "symfony/validator": {
@@ -160,7 +160,7 @@
             "ref": "8c1c4e28d26a124b0bb273f537ca8ce443472bfd"
         },
         "files": [
-            "config/packages/validator.yaml"
+            "./config/packages/validator.yaml"
         ]
     },
     "symfony/web-profiler-bundle": {
@@ -172,8 +172,8 @@
             "ref": "e42b3f0177df239add25373083a564e5ead4e13a"
         },
         "files": [
-            "config/packages/web_profiler.yaml",
-            "config/routes/web_profiler.yaml"
+            "./config/packages/web_profiler.yaml",
+            "./config/routes/web_profiler.yaml"
         ]
     },
     "symfonycasts/reset-password-bundle": {
@@ -185,10 +185,13 @@
             "ref": "97c1627c0384534997ae1047b93be517ca16de43"
         },
         "files": [
-            "config/packages/reset_password.yaml"
+            "./config/packages/reset_password.yaml"
         ]
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.17.3"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.20.0"
     }
 }
