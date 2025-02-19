@@ -7,3 +7,7 @@ controllers:
 accueil:
     path: /accueil
     controller: App\Controller\HomeController::bonjour
+
+home:
+    path: /habits
+    controller: App\Controller\HabitController::habits

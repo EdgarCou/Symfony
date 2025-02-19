@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block title %}Add Habit{% endblock %}
+
+{% block body %}
+    <h1>Add a New Habit</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('show_habits') }}" class="btn">Back to Habits</a>
+{% endblock %}

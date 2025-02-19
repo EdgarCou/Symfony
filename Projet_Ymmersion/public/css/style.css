@@ -1,0 +1,204 @@
+/* 🌸 Retro Pink Aesthetic - public/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --main-bg: #fce4ec;         /* Soft pink */
+    --box-bg: #ffebee;          /* Lighter pink */
+    --text-color: #880e4f;      /* Deep pink */
+    --accent-color: #ff4081;    /* Bright pink */
+    --button-hover: #f50057;    /* Darker hover */
+    --border-color: #ff80ab;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-color);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* 🎀 Header Styling */
+header {
+    background: var(--accent-color);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px var(--shadow);
+}
+
+header h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-shadow: 2px 2px var(--border-color);
+}
+
+/* 📜 Habit List */
+.habit-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* 🌸 Habit Item Layout */
+.habit-item {
+    background: var(--box-bg);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px var(--shadow);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Needed for absolute positioning of buttons */
+    text-align: left; /* Aligns text properly */
+    min-height: 60px; /* Ensures space for buttons */
+}
+
+/* ✅ Task Title on the Left */
+.habit-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-right: 40px; /* Prevents overlap with buttons */
+}
+
+/* 🏷️ Category Tag (bottom-left) */
+.habit-category {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* 🏷️ Category Tags */
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+.chores { background: #ff4081; }
+.fitness { background: #ff9800; }
+.school_work { background: #3f51b5; }
+
+/* ✅ Checkbox in Top-Right */
+.habit-checkbox-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.habit-checkbox-form input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin: 0;
+}
+
+.habit-checkbox-form input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+
+/* ❌ Delete Button in Bottom-Right */
+.habit-delete-form {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.habit-delete-form button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--button-hover);
+    padding: 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.habit-delete-form button:hover {
+    transform: scale(1.1);
+}
+
+/* 🌸 Completed Habit Styling */
+.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* 🌸 Buttons (General) */
+button, .btn {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover:not(.habit-delete-form button), .btn:hover {
+    background: var(--button-hover);
+    transform: scale(1.05);
+}
+
+/* 🎀 Forms */
+form:not(.habit-checkbox-form):not(.habit-delete-form) {
+    background: var(--box-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px var(--shadow);
+    text-align: left;
+    display: inline-block;
+    max-width: 500px;
+    width: 150%;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form input, form select {
+    width: 85%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    outline: none;
+}
+
+form input:focus, form select:focus {
+    border-color: var(--accent-color);
+}
+
+/* 🌸 Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 15px;
+    font-size: 14px;
+    box-shadow: 4px 4px 10px var(--shadow);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
