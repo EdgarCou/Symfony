@@ -5,4 +5,7 @@
 
     <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
     <p><strong>Email :</strong> {{ user.email }}</p>
+    <p><strong>Groupe :</strong> {{ user.groupName }}</p>
+
+    <a href="{{path('app_admin')}}">retour</a>
 {% endblock %}

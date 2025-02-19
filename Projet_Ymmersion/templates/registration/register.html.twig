@@ -1,6 +1,13 @@
+{# filepath: /Users/edgarcou/Documents/Ynov/B2/YMMERSION2/Symfony/Projet_Ymmersion/templates/registration/register.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -12,6 +19,7 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
@@ -21,6 +29,5 @@
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
 
-
-    <p>Do you already have an account? <a href="{{path('app_login')}}">Click here login</a></p>
+    <p>Do you already have an account? <a href="{{ path('app_login') }}">Click here to login</a></p>
 {% endblock %}

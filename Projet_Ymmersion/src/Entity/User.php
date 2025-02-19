@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profilePicture = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $groupName = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +154,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfilePicture(string $profilePicture): static
     {
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getGroupName(): ?string
+    {
+        return $this->groupName;
+    }
+
+    public function setGroupName(?string $groupName): static
+    {
+        $this->groupName = $groupName;
 
         return $this;
     }
