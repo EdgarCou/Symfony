@@ -4,6 +4,9 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+accueil:
+    path: /accueil
+    controller: App\Controller\HomeController::bonjour
 
 home:
     path: /habits
