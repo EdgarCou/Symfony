@@ -43,9 +43,6 @@ class HabitType extends AbstractType
                     'Once' => 'once',
                 ],
                 'label' => 'Frequency',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Add Habit',
             ]);
    
 
