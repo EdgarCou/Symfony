@@ -12,11 +12,15 @@ class Habit
     #[Assert\Choice(choices: ['personal', 'group'], message: "Choose a valid type.")]
     private string $type;
 
+    #[ORM\Column(type: "string", length: 20, nullable: false, options: ["default" => "color1"])]
+    #[Assert\Choice(choices: ['color1', 'color2', 'color3', 'color4', 'color5'], message: "Choose a valid color.")]
+    private string $color = 'color1';
+
     #[ORM\Column(type: "boolean")]
     private bool $completed = false;
 
     #[ORM\Column(type: "string", length: 50)]
-    #[Assert\Choice(choices: ['chores', 'fitness', 'school_work'], message: "Choose a valid category.")]
+    #[Assert\Choice(choices: ['chores', 'fitness', 'school', 'work'], message: "Choose a valid category.")]
     private string $category;
 
     #[ORM\Id]
@@ -32,12 +36,8 @@ class Habit
     #[Assert\Choice(choices: ['very easy', 'easy', 'medium', 'hard'], message: "Choose a valid difficulty.")]
     private string $difficulty;
 
-    #[ORM\Column(type: "string", length: 7)]
-    #[Assert\Regex(pattern: "/^#[a-f0-9]{6}$/i", message: "Invalid color format (e.g., #FF5733).")]
-    private string $color;
-
     #[ORM\Column(type: "string", length: 20)]
-    #[Assert\Choice(choices: ['daily', 'weekly'], message: "Periodicity must be either daily or weekly.")]
+    #[Assert\Choice(choices: ['daily', 'weekly', 'once'], message: "Periodicity must be either daily, weekly, or once.")]
     private string $periodicity;
 
     #[ORM\Column(type: "datetime", nullable: false)]
@@ -50,6 +50,16 @@ class Habit
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+        return $this;
+    }
 
     public function __construct()
     {
@@ -82,17 +92,6 @@ class Habit
     public function setDifficulty(string $difficulty): self
     {
         $this->difficulty = $difficulty;
-        return $this;
-    }
-
-    public function getColor(): string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
         return $this;
     }
 
