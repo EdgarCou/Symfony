@@ -17,14 +17,15 @@ class HabitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'Chores' => 'chores',
-                    'Fitness' => 'fitness',
-                    'School/Work' => 'school_work',
-                ],
-                'label' => 'Category',
-            ])
+        ->add('category', ChoiceType::class, [
+            'choices' => [
+                'Chores' => 'chores',
+                'Fitness' => 'fitness',
+                'School' => 'school',
+                'Work' => 'work',
+            ],
+            'label' => 'Category',
+        ])
             ->add('text', TextType::class, [
                 'label' => 'Habit Name',
             ])
@@ -43,6 +44,9 @@ class HabitType extends AbstractType
                     'Once' => 'once',
                 ],
                 'label' => 'Frequency',
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Add Habit',
             ]);
    
 
