@@ -31,6 +31,13 @@
         {{ form_widget(form.periodicity, {'attr': {'class': 'form-control'}}) }}
     </div>
 
+    {% if form.type is defined %}
+        <div class="form-group">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    {% endif %}
+
     <div class="form-group">
         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
     </div>

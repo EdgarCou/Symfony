@@ -43,10 +43,8 @@ class HabitType extends AbstractType
                     'Once' => 'once',
                 ],
                 'label' => 'Frequency',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Add Habit',
             ]);
+   
 
         if ($options['is_group_creator']) {
             $builder->add('type', ChoiceType::class, [
