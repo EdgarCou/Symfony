@@ -58,7 +58,6 @@ class GroupController extends AbstractController
         ]);
     }
 
-
     #[Route('/group/leave', name: 'leave_group', methods: ['POST'])]
     public function leaveGroup(EntityManagerInterface $em): Response
     {
