@@ -17,6 +17,7 @@
                         <form method="post" action="{{ path('join_group', { 'id': group.id }) }}" class="join-group-form">
                             <input type="hidden" name="_token" value="{{ csrf_token('join' ~ group.id) }}">
                             <span class="group-name">{{ group.name }}</span>
+                            <br>
                             <button type="submit" class="btn">Rejoindre</button>
                         </form>
                     {% else %}
