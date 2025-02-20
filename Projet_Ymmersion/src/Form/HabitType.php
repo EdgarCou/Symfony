@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class HabitType extends AbstractType
 {
@@ -35,15 +36,15 @@ class HabitType extends AbstractType
                     'Hard' => 'hard',
                 ],
             ])
-            ->add('color', ColorType::class, [
-                'label' => 'Color',
-            ])
             ->add('periodicity', ChoiceType::class, [
                 'choices' => [
                     'Daily' => 'daily',
                     'Weekly' => 'weekly',
+                    'Once' => 'once',
                 ],
+                'label' => 'Frequency',
             ]);
+   
 
         if ($options['is_group_creator']) {
             $builder->add('type', ChoiceType::class, [

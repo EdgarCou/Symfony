@@ -3,37 +3,48 @@
 {% block title %}My Habits{% endblock %}
 
 {% block body %}
-    <h1>🌸 My Habits 🌸</h1>
+    <h1>My Habits 🎀📋✨</h1>
+
+    {% set colors = ['color1', 'color2', 'color3', 'color4', 'color5'] %}
 
     <ul class="habit-list">
         {% for habit in personalHabits %}
-            <li class="habit-item {% if habit.completed %}completed{% endif %}">
+            {% set color_class = colors[loop.index0 % colors|length] %} {# Rotate colors #}
 
-                <!-- Habit Title & Category -->
+
+            <li class="habit-item {{ color_class }} {% if habit.completed %}completed{% endif %}">
+    
+                <!-- Habit Title -->
                 <div class="habit-title">{{ habit.text }}</div>
-                <div class="habit-category">
-                    <span class="tag {{ habit.category }}">{{ habit.category|replace({'_': ' '})|capitalize }}</span>
-                </div>
                 
-                <!-- Checkbox Form -->
+                <!-- Habit Meta (Category + Difficulty + Frequency) -->
+                <div class="habit-meta">
+                    <span class="tag {{ habit.category }}">{{ habit.category|replace({'_': ' '})|capitalize }}</span>
+                    <span class="difficulty-tag {{ habit.difficulty }}">{{ habit.difficulty|capitalize }}</span>
+                    <span class="frequency-tag {{ habit.periodicity }}">{{ habit.periodicity|capitalize }}</span>
+                </div>
+
+                <!-- Checkbox Form (Top-Right) -->
                 <form method="post" action="{{ path('toggle_habit', { 'id': habit.id }) }}" class="habit-checkbox-form">
                     <input type="hidden" name="_token" value="{{ csrf_token('toggle' ~ habit.id) }}">
                     <input type="checkbox" onchange="this.form.submit()" {% if habit.completed %}checked{% endif %}>
                 </form>
 
-                <!-- Delete Button -->
+                <!-- Delete Button (Bottom-Right) -->
                 <form method="post" action="{{ path('delete_habit', { 'id': habit.id }) }}" class="habit-delete-form"
-                      onsubmit="return confirm('Are you sure you want to delete this habit?');">
+                    onsubmit="return confirm('Are you sure you want to delete this habit?');">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ habit.id) }}">
                     <button type="submit" class="delete-btn">❌</button>
                 </form>
+
             </li>
         {% else %}
-            <p>No habits found.</p>
+            <p>No habits found 😭</p>
         {% endfor %}
     </ul>
 
-    <a href="{{ path('add_habit_form') }}" class="btn">✨ Add New Habit ✨</a>
+    <a href="{{ path('add_habit_form') }}" class="btn">Add New Habit 🌈</a>
     <a href="{{ path('app_admin') }}" class="btn">✨ Back to Home ✨</a>
+    
 
 {% endblock %}

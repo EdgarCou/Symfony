@@ -7,9 +7,9 @@
     <a href="{{path('app_logout')}}" class="btn">Logout</a>
     <a href="{{path('profile')}}" class="btn">Account</a>
     <a href="{{path('show_habits')}}" class="btn">My Habits</a>
-    <a href="{{ path('group_list') }}" class="btn">All Groups</a>
     {% if app.user.group is null %}
-    <a href="{{ path('group_new') }}" class="btn">Make a Group</a>
+        <a href="{{ path('group_new') }}" class="btn">Make a Group</a>
+        <a href="{{ path('view_invitations') }}" class="btn">Invitations</a>
     {% else %}
     <p>You are a member of: <br><a href="{{ path('show_group_habits') }}" class="btn">✨ {{ app.user.group.name }} ✨</a>
     </p>
