@@ -9,9 +9,33 @@
 {% block body %}
     <h1>Add a New Habit</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
+    {{ form_start(form, {'attr': {'class': 'habit-form'}}) }}
+
+    <div class="form-group">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.text) }}
+        {{ form_widget(form.text, {'attr': {'class': 'form-control', 'name': 'habit_name'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.difficulty) }}
+        {{ form_widget(form.difficulty, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.periodicity) }}
+        {{ form_widget(form.periodicity, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    </div>
+
     {{ form_end(form) }}
 
-    <a href="{{ path('show_habits') }}" class="btn">Back to Habits</a>
+    <a href="{{ path('show_habits') }}" class="btn">Back to Habits 💅🏼 </a>
 {% endblock %}

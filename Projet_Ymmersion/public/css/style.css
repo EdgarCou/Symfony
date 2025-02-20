@@ -1,4 +1,4 @@
-/* 🌸 Retro Pink Aesthetic - public/css/style.css */
+/* 🌸 Retro Pink Aesthetic */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
@@ -20,6 +20,7 @@ body {
     padding: 0;
 }
 
+/* 🌸 Container */
 .container {
     max-width: 800px;
     margin: auto;
@@ -49,59 +50,96 @@ header h1 {
 
 /* 🌸 Habit Item Layout */
 .habit-item {
-    background: var(--box-bg);
+    max-width: 600px; /* Limits the width */
+    width: 90%; /* Responsive size */
     padding: 15px;
-    margin-bottom: 15px;
+    margin: 10px auto; /* Centers the item */
     border-radius: 15px;
     box-shadow: 3px 3px 10px var(--shadow);
     font-size: 16px;
     display: flex;
     flex-direction: column;
-    position: relative; /* Needed for absolute positioning of buttons */
-    text-align: left; /* Aligns text properly */
-    min-height: 60px; /* Ensures space for buttons */
+    position: relative;
+    text-align: left;
+    min-height: 80px;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* ✅ Task Title on the Left */
+/* 🎨 Rotating Background Colors */
+.color1 { background-color: #FFADAD; } /* Soft Red */
+.color2 { background-color: #FFD6A5; } /* Soft Orange */
+.color3 { background-color: #FDFFB6; } /* Soft Yellow */
+.color4 { background-color: #CAFFBF; } /* Soft Green */
+.color5 { background-color: #9BF6FF; } /* Soft Blue */
+
+/* 🎀 Habit Meta Section (Category + Difficulty + Frequency) */
+.habit-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    justify-content: left; /* Ensures proper alignment */
+}
+
+/* 🎯 Standardized Tags (Same Size for Category, Difficulty, and Frequency) */
+.tag, .difficulty-tag, .frequency-tag {
+    min-width: 85px;
+    max-width: 90px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 🎯 Category Colors (High-Contrast Shades of Purple) */
+.tag.chores { background-color: #D8BFD8; color: #4B0082; } /* Light Thistle with Dark Indigo */
+.tag.fitness { background-color: #BA68C8; color: #2E004B; } /* Medium Purple with Dark Violet */
+.tag.school { background-color: #8E24AA; color: #FFFFFF; } /* Deep Amethyst with White */
+.tag.work { background-color: #4A148C; color: #F8E1FF; } /* Dark Purple with Soft Lilac */
+
+/* 🌟 Difficulty Colors (Pastel Shades) */
+.difficulty-tag.easy { background-color: #C8E6C9; color: #2E7D32; } /* Soft Pastel Green with Dark Green Text */
+.difficulty-tag.medium { background-color: #FFF9C4; color: #B28900; } /* Soft Pastel Yellow with Deep Gold Text */
+.difficulty-tag.hard { background-color: #FFCDD2; color: #B71C1C; } /* Soft Pastel Red with Deep Crimson Text */
+
+/* 🕒 Frequency Tag Colors (High-Contrast Shades of Pink) */
+.frequency-tag.daily { background-color: #FFC0CB; color: #8B0046; } /* Light Pink with Deep Rose */
+.frequency-tag.weekly { background-color: #FF4081; color: #FFFFFF; } /* Vibrant Hot Pink with White */
+.frequency-tag.once { background-color: #C2185B; color: #FFD9E6; } /* Deep Raspberry Pink with Soft Pastel Pink */
+
+/* ✅ Task Title */
 .habit-title {
     font-size: 1.2em;
     font-weight: bold;
-    padding-right: 40px; /* Prevents overlap with buttons */
-}
-
-/* 🏷️ Category Tag (bottom-left) */
-.habit-category {
-    margin-top: 10px;
-    display: inline-block;
+    padding-right: 40px;
 }
 
 /* 🏷️ Category Tags */
-.tag {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 12px;
-    color: white;
+.habit-category {
+    margin-top: 8px;
 }
-
-.chores { background: #ff4081; }
-.fitness { background: #ff9800; }
-.school_work { background: #3f51b5; }
 
 /* ✅ Checkbox in Top-Right */
 .habit-checkbox-form {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 20px;
 }
 
 .habit-checkbox-form input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     accent-color: var(--accent-color);
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    margin: 0;
 }
 
 .habit-checkbox-form input[type="checkbox"]:hover {
@@ -111,22 +149,21 @@ header h1 {
 /* ❌ Delete Button in Bottom-Right */
 .habit-delete-form {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 12px;
+    right: 15px;
 }
 
 .habit-delete-form button {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     color: var(--button-hover);
-    padding: 0;
     transition: transform 0.2s ease-in-out;
 }
 
 .habit-delete-form button:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* 🌸 Completed Habit Styling */
@@ -135,7 +172,7 @@ header h1 {
     text-decoration: line-through;
 }
 
-/* 🌸 Buttons (General) */
+/* 🌸 Buttons */
 button, .btn {
     display: inline-block;
     text-decoration: none;
@@ -156,35 +193,43 @@ button:hover:not(.habit-delete-form button), .btn:hover {
     transform: scale(1.05);
 }
 
-/* 🎀 Forms */
+/* 🎀 General form styling */
 form:not(.habit-checkbox-form):not(.habit-delete-form) {
     background: var(--box-bg);
-    padding: 20px;
+    padding: 90px;
     border-radius: 15px;
     box-shadow: 3px 3px 10px var(--shadow);
     text-align: left;
     display: inline-block;
     max-width: 500px;
-    width: 150%;
+    width: 100%;
 }
 
-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-form input, form select {
-    width: 85%;
+/* 🎀 General input styling */
+form input, 
+form select, 
+form textarea, 
+form button {
+    width: 100%;
+    max-width: 500px; /* Default width for all inputs */
     padding: 10px;
     margin-top: 5px;
     border-radius: 10px;
     border: 2px solid var(--border-color);
     outline: none;
+    font-size: 14px;
 }
 
-form input:focus, form select:focus {
-    border-color: var(--accent-color);
+/* 🎀 Submit Button */
+form button {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* 🎀 Add spacing between form elements */
+.form-group {
+    margin-bottom: 15px;
 }
 
 /* 🌸 Footer */

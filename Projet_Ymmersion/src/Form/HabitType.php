@@ -19,7 +19,8 @@ class HabitType extends AbstractType
             'choices' => [
                 'Chores' => 'chores',
                 'Fitness' => 'fitness',
-                'School/Work' => 'school_work',
+                'School' => 'school',
+                'Work' => 'work',
             ],
             'label' => 'Category',
         ])
@@ -33,14 +34,13 @@ class HabitType extends AbstractType
                     'Hard' => 'hard',
                 ],
             ])
-            ->add('color', ColorType::class, [
-                'label' => 'Color',
-            ])
             ->add('periodicity', ChoiceType::class, [
                 'choices' => [
                     'Daily' => 'daily',
                     'Weekly' => 'weekly',
+                    'Once' => 'once',
                 ],
+                'label' => 'Frequency',
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Add Habit',
