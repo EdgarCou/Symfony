@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Habits List{% endblock %}
+{% block title %}My Habits{% endblock %}
 
 {% block body %}
-    <h1>🌸 Habits List 🌸</h1>
+    <h1>🌸 My Habits 🌸</h1>
 
     <ul class="habit-list">
-        {% for habit in habits %}
+        {% for habit in personalHabits %}
             <li class="habit-item {% if habit.completed %}completed{% endif %}">
 
-                 <!-- Habit Title & Category -->
+                <!-- Habit Title & Category -->
                 <div class="habit-title">{{ habit.text }}</div>
                 <div class="habit-category">
                     <span class="tag {{ habit.category }}">{{ habit.category|replace({'_': ' '})|capitalize }}</span>
@@ -34,4 +34,6 @@
     </ul>
 
     <a href="{{ path('add_habit_form') }}" class="btn">✨ Add New Habit ✨</a>
+    <a href="{{ path('app_admin') }}" class="btn">✨ Back to Home ✨</a>
+
 {% endblock %}
