@@ -10,7 +10,11 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
+<<<<<<<< HEAD:Projet_Ymmersion/migrations/Version20250219201057.php
 final class Version20250219201057 extends AbstractMigration
+========
+final class Version20250219190412 extends AbstractMigration
+>>>>>>>> 3691f42 (make group and join them, habit for group):Projet_Ymmersion/migrations/Version20250219190412.php
 {
     public function getDescription(): string
     {
