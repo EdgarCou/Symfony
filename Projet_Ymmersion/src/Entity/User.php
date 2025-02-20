@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-#[UniqueEntity(fields: ['username'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -44,8 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profilePicture = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $groupName = null;
+    #[ORM\ManyToOne(targetEntity: Group::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Group $group = null;
 
     public function getId(): ?int
     {
@@ -158,14 +159,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getGroupName(): ?string
+    public function getGroup(): ?Group
     {
-        return $this->groupName;
+        return $this->group;
     }
 
-    public function setGroupName(?string $groupName): static
+    public function setGroup(?Group $group): static
     {
-        $this->groupName = $groupName;
+        $this->group = $group;
 
         return $this;
     }

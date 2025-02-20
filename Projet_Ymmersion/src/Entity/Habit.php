@@ -8,6 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 class Habit
 {
+    #[ORM\Column(type: "string", length: 10)]
+    #[Assert\Choice(choices: ['personal', 'group'], message: "Choose a valid type.")]
+    private string $type;
+
     #[ORM\Column(type: "boolean")]
     private bool $completed = false;
 
@@ -25,7 +29,7 @@ class Habit
     private string $text;
 
     #[ORM\Column(type: "string", length: 50)]
-    #[Assert\Choice(choices: ['easy', 'medium', 'hard'], message: "Choose a valid difficulty.")]
+    #[Assert\Choice(choices: ['very easy', 'easy', 'medium', 'hard'], message: "Choose a valid difficulty.")]
     private string $difficulty;
 
     #[ORM\Column(type: "string", length: 7)]
@@ -39,10 +43,19 @@ class Habit
     #[ORM\Column(type: "datetime", nullable: false)]
     private \DateTimeInterface $createdAt;
 
+    #[ORM\ManyToOne(targetEntity: Group::class, inversedBy: 'habits')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Group $group = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
     $this->createdAt = new \DateTime(); 
     $this->completed = false;
+    $this->type = 'personal';
     }
 
     public function getId(): ?int
@@ -106,25 +119,59 @@ class Habit
     }
 
     public function getCompleted(): bool
-{
+    {
     return $this->completed;
-}
+    }
 
-public function setCompleted(bool $completed): self
-{
+    public function setCompleted(bool $completed): self
+    {
     $this->completed = $completed;
     return $this;
-}
+    }
 
-public function getCategory(): string
-{
-    return $this->category;
-}
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
 
-public function setCategory(string $category): self
-{
-    $this->category = $category;
-    return $this;
-}
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function getGroup(): ?Group
+    {
+        return $this->group;
+    }
+
+    public function setGroup(?Group $group): self
+    {
+        $this->group = $group;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+        return $this;
+    }
+
 
 }
