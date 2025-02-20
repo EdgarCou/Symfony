@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer une Invitation{% endblock %}
+
+{% block body %}
+    <h1>Envoyer une Invitation</h1>
+
+    <form action="{{ path('send_invitation') }}" method="post">
+        <div>
+            <label for="username">Pseudo de l'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <button type="submit">Envoyer l'invitation</button>
+    </form>
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+<br>
+<a href="{{path('app_admin')}}" class="btn">Back</a>
+{% endblock %}

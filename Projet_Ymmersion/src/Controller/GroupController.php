@@ -58,22 +58,6 @@ class GroupController extends AbstractController
         ]);
     }
 
-    #[Route('/group/join/{id}', name: 'join_group', methods: ['POST'])]
-    public function joinGroup(int $id, EntityManagerInterface $em): Response
-    {
-        $user = $this->getUser();
-        $group = $em->getRepository(Group::class)->find($id);
-
-        if (!$group) {
-            throw $this->createNotFoundException('Group not found');
-        }
-
-        $user->setGroup($group);
-        $em->flush();
-
-        return $this->redirectToRoute('group_list');
-    }
-
     #[Route('/group/leave', name: 'leave_group', methods: ['POST'])]
     public function leaveGroup(EntityManagerInterface $em): Response
     {
