@@ -1,0 +1,13 @@
+{# filepath: /Users/edgarcou/Documents/Ynov/B2/YMMERSION2/Symfony/Projet_Ymmersion/templates/group/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Group{% endblock %}
+
+{% block body %}
+    <h1>Create Group</h1>
+
+    {{ form_start(groupForm) }}
+        {{ form_row(groupForm.name) }}
+        {{ form_row(groupForm.save) }}
+    {{ form_end(groupForm) }}
+{% endblock %}

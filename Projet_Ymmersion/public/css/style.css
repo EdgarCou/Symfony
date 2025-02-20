@@ -157,7 +157,7 @@ button:hover:not(.habit-delete-form button), .btn:hover {
 }
 
 /* 🎀 Forms */
-form:not(.habit-checkbox-form):not(.habit-delete-form) {
+form:not(.habit-checkbox-form):not(.habit-delete-form):not(.leave-group-form) {
     background: var(--box-bg);
     padding: 20px;
     border-radius: 15px;
@@ -174,7 +174,7 @@ form label {
     margin-top: 10px;
 }
 
-form input, form select {
+form input, form select:not(.leave-group-form) {
     width: 85%;
     padding: 10px;
     margin-top: 5px;
@@ -186,6 +186,19 @@ form input, form select {
 form input:focus, form select:focus {
     border-color: var(--accent-color);
 }
+
+.leave-group-form {
+    background-color: transparent;
+    text-align: center;
+}
+
+.join-group-form {
+    text-align: left;
+    background-color: transparent;
+    text-align: center;
+}
+
+
 
 /* 🌸 Footer */
 footer {
@@ -202,3 +215,4 @@ footer {
 footer p {
     margin: 0;
 }
+

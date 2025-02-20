@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250219071400 extends AbstractMigration
+final class Version20250219191706 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20250219071400 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user ADD group_name VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE habit DROP type');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user DROP group_name');
+        $this->addSql('ALTER TABLE habit ADD type VARCHAR(10) NOT NULL');
     }
 }
