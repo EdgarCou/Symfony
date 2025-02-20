@@ -1,0 +1,14 @@
+{# filepath: /Users/edgarcou/Documents/Ynov/B2/YMMERSION2/Symfony/Projet_Ymmersion/templates/group/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Group List{% endblock %}
+
+{% block body %}
+    <h1>Group List</h1>
+
+    <ul>
+        {% for group in groups %}
+            <li>{{ group.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

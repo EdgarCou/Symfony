@@ -5,7 +5,7 @@
 
     <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
     <p><strong>Email :</strong> {{ user.email }}</p>
-    <p><strong>Groupe :</strong> {{ user.groupName }}</p>
+    <p><strong>Groupe :</strong> {{ user.group ? user.group.name : 'No group for the moment' }}</p>
 
-    <a href="{{path('app_admin')}}">retour</a>
+    <a href="{{path('app_admin')}}" class="btn">Back</a>
 {% endblock %}
