@@ -14,9 +14,8 @@
     {% set colors = ['color1', 'color2', 'color3', 'color4', 'color5'] %}
 
     <ul class="habit-list">
-        {% for habit in personnalHabits %}
+        {% for habit in personalHabits %}
             {% set color_class = colors[loop.index0 % colors|length] %} {# Rotate colors #}
-            <li class="habit-item {% if habit.completed %}completed{% endif %}">
 
 
             <li class="habit-item {{ color_class }} {% if habit.completed %}completed{% endif %}">
