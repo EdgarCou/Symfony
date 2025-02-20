@@ -48,6 +48,16 @@ class GroupController extends AbstractController
         ]);
     }
 
+    #[Route('/group', name: 'group_list')]
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+        $groups = $entityManager->getRepository(Group::class)->findAll();
+
+        return $this->render('list.html.twig', [
+            'groups' => $groups,
+        ]);
+    }
+
     #[Route('/group/leave', name: 'leave_group', methods: ['POST'])]
     public function leaveGroup(EntityManagerInterface $em): Response
     {
