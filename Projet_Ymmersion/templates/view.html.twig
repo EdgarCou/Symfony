@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Invitations{% endblock %}
+
+{% block body %}
+    <h1>My Invitations</h1>
+
+    {% for invitation in invitations %}
+        <div class="invitation">
+            <p>Invitation de {{ invitation.creator.username }}</p>
+            <form action="{{ path('accept_invitation', { 'id': invitation.id }) }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('accept' ~ invitation.id) }}">
+                <button type="submit">Accepter</button>
+            </form>
+            <form action="{{ path('decline_invitation', { 'id': invitation.id }) }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('decline' ~ invitation.id) }}">
+                <button type="submit">Refuser</button>
+            </form>
+        </div>
+    {% else %}
+        <p>No invitation for the moment. 😭</p>
+    {% endfor %}
+    <br>
+    <a href="{{path('app_admin')}}" class="btn">Back</a>
+{% endblock %}
