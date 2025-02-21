@@ -83,7 +83,7 @@ class HabitController extends AbstractController
 
         $difficultyPoints = [
             'very easy' => 1,
-            'easy' => 2,
+            'easy' => -2,
             'medium' => 5,
             'hard' => 10
         ];
@@ -111,6 +111,25 @@ class HabitController extends AbstractController
                 $group->addPoints($points);
             }
         }
+
+        if ($group && $group->getScore() < 0) {
+            $groupHabits = $em->getRepository(Habit::class)->findBy(['group' => $group]);
+            foreach ($groupHabits as $habit) {
+                $em->remove($habit);
+            }
+        
+            $em->remove($group);
+        
+            $users = $group->getUsers();
+            foreach ($users as $member) {
+                $member->setGroup(null);
+            }
+        
+            $em->flush();
+        
+            $this->addFlash('error', 'Le groupe a été dissout car son score est tombé en dessous de zéro.');
+            return $this->redirectToRoute('app_admin'); 
+        }        
 
         $habit->setCompleted(!$habit->getCompleted());
 

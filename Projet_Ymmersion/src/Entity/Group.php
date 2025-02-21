@@ -27,9 +27,18 @@ class Group
     #[ORM\OneToMany(targetEntity: Score::class, mappedBy: "group")]
     private Collection $scores;
 
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'group')]
+    private Collection $users;
+
     public function __construct()
     {
+        $this->users = new ArrayCollection();
         $this->scores = new ArrayCollection();
+    }
+
+    public function getUsers(): Collection
+    {
+        return $this->users;
     }
 
     public function getId(): ?int
