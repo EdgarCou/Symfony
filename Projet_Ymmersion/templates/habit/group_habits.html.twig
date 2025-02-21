@@ -36,20 +36,12 @@
                     <input type="checkbox" onchange="this.form.submit()" {% if habit.completed %}checked{% endif %}>
                 </form>
 
-<<<<<<< HEAD
-                {% if group.creator == app.user %}
-=======
                 <!-- Delete Button (Bottom-Right) -->
->>>>>>> Ronan
                 <form method="post" action="{{ path('delete_habit', { 'id': habit.id }) }}" class="habit-delete-form"
                     onsubmit="return confirm('Are you sure you want to delete this habit?');">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ habit.id) }}">
                     <button type="submit" class="delete-btn">❌</button>
                 </form>
-<<<<<<< HEAD
-            {% endif %}
-=======
->>>>>>> Ronan
 
             </li>
         {% else %}
