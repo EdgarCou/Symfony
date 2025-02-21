@@ -48,7 +48,7 @@ class HabitController extends AbstractController
                     return $this->redirectToRoute('show_group_habits');
                 }
             } else {
-                $habit->setGroup(null); // Assurez-vous que le champ group_id est nul pour les habits personnels
+                $habit->setGroup(null); 
             }
 
             $em->persist($habit);
@@ -120,6 +120,7 @@ class HabitController extends AbstractController
         $groupHabits = $em->getRepository(Habit::class)->findBy(['group' => $group, 'type' => 'group']);
 
         return $this->render('habit/group_habits.html.twig', [
+            'group' => $group,
             'groupHabits' => $groupHabits,
         ]);
     }
