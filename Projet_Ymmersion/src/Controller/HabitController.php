@@ -85,7 +85,7 @@ class HabitController extends AbstractController
             'very easy' => 1,
             'easy' => 2,
             'medium' => 5,
-            'hard' => 10
+            'hard' => -10
         ];
         $points = $difficultyPoints[$habit->getDifficulty()] ?? 0;
 
@@ -127,7 +127,7 @@ class HabitController extends AbstractController
         
             $em->flush();
         
-            $this->addFlash('error', 'Le groupe a été dissout car son score est tombé en dessous de zéro.');
+            $this->addFlash('error', 'The group has been dissolved because its score fell below zero.');
             return $this->redirectToRoute('app_admin');
         }        
 
