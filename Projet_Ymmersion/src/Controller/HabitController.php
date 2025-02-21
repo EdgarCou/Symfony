@@ -52,7 +52,7 @@ class HabitController extends AbstractController
                     return $this->redirectToRoute('show_group_habits');
                 }
             } else {
-                $habit->setGroup(null); // Assurez-vous que le champ group_id est nul pour les habits personnels
+                $habit->setGroup(null);
             }
 
             $em->persist($habit);
@@ -83,7 +83,7 @@ class HabitController extends AbstractController
 
         $difficultyPoints = [
             'very easy' => 1,
-            'easy' => -2,
+            'easy' => 2,
             'medium' => 5,
             'hard' => 10
         ];
@@ -128,7 +128,7 @@ class HabitController extends AbstractController
             $em->flush();
         
             $this->addFlash('error', 'Le groupe a été dissout car son score est tombé en dessous de zéro.');
-            return $this->redirectToRoute('app_admin'); 
+            return $this->redirectToRoute('app_admin');
         }        
 
         $habit->setCompleted(!$habit->getCompleted());
