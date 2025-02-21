@@ -3,6 +3,15 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+                <button class="close-alert" onclick="this.parentElement.style.display='none'">×</button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <h1> ✨ Hello {{app.user.username}} ! ✨</h1>
     <a href="{{path('app_logout')}}" class="btn">Logout</a>
     <a href="{{path('profile')}}" class="btn">Account</a>
