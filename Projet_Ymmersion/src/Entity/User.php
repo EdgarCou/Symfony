@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Score;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -47,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Group::class)]
     #[ORM\JoinColumn(nullable: true)]
     private ?Group $group = null;
+
+    #[ORM\OneToOne(targetEntity: Score::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Score $score = null;
 
     public function getId(): ?int
     {
@@ -169,5 +173,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->group = $group;
 
         return $this;
+    }
+
+    public function getScore(): ?Score
+    {
+        return $this->score;
+    }
+
+    public function setScore(Score $score): static
+    {
+        $this->score = $score;
+        if ($score->getUser() !== $this) {
+            $score->setUser($this);
+        }
+        return $this;
+    }
+    
+    public function __construct()
+    {
+        $this->roles = ['ROLE_USER'];
+        $this->score = new Score();
+        $this->score->setUser($this);
     }
 }

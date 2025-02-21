@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\GroupRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,11 +21,16 @@ class Group
     #[ORM\JoinColumn(nullable: false)]
     private ?User $creator = null;
 
-    #[ORM\Column]
-    private ?int $score = 0;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\OneToMany(targetEntity: Score::class, mappedBy: "group")]
+    private Collection $scores;
+
+    public function __construct()
+    {
+        $this->scores = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -42,17 +49,31 @@ class Group
         return $this;
     }
 
-    public function getScore(): ?int
+    #[ORM\Column(type: 'integer')]
+    private int $score = 0; // Initialise à 0 pour éviter null
+    
+    public function getScore(): int
     {
         return $this->score;
     }
-
+    
     public function setScore(int $score): static
     {
         $this->score = $score;
-
         return $this;
     }
+    
+    public function addPoints(int $points): static
+    {
+        $this->score += $points;
+        return $this;
+    }
+    
+    public function removePoints(int $points): static
+    {
+        $this->score -= $points;
+        return $this;
+    }    
 
     public function getName(): ?string
     {
