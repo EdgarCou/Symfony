@@ -83,7 +83,7 @@ class HabitController extends AbstractController
 
         $difficultyPoints = [
             'very easy' => 1,
-            'easy' => -2,
+            'easy' => 2,
             'medium' => 5,
             'hard' => 10
         ];
