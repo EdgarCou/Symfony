@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Habit;
+use App\Entity\Score;
 use App\Form\HabitType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +18,12 @@ class HabitController extends AbstractController
     {
         $user = $this->getUser();
         $personalHabits = $em->getRepository(Habit::class)->findBy(['user' => $user, 'type' => 'personal']);
+        $userScore = $user->getScore();
+        $userPoints = $userScore ? $userScore->getPoints() : 0;
 
         return $this->render('habit/show.html.twig', [
             'personalHabits' => $personalHabits,
+            'userPoints' => $userPoints,
         ]);
     }
 
@@ -74,14 +78,45 @@ class HabitController extends AbstractController
             throw $this->createNotFoundException('Habit not found');
         }
 
+        $user = $this->getUser();
+        $group = $habit->getGroup();
+
+        $difficultyPoints = [
+            'very easy' => 1,
+            'easy' => 2,
+            'medium' => 5,
+            'hard' => 10
+        ];
+        $points = $difficultyPoints[$habit->getDifficulty()] ?? 0;
+
+        $scoreRepository = $em->getRepository(Score::class);
+        $userScore = $scoreRepository->findOneBy(['user' => $user]);
+
+        if (!$userScore) {
+            $userScore = new Score();
+            $userScore->setUser($user);
+            $em->persist($userScore);
+        }
+
+        if ($habit->getCompleted()) {
+            if ($habit->getType() === 'personal') {
+                $userScore->removePoints($points);
+            } elseif ($habit->getType() === 'group' && $group) {
+                $group->removePoints($points);
+            }
+        } else {
+            if ($habit->getType() === 'personal') {
+                $userScore->addPoints($points);
+            } elseif ($habit->getType() === 'group' && $group) {
+                $group->addPoints($points);
+            }
+        }
+
         $habit->setCompleted(!$habit->getCompleted());
+
         $em->flush();
 
-        if ($habit->getType() === 'group') {
-            return $this->redirectToRoute('show_group_habits');
-        } else {
-            return $this->redirectToRoute('show_habits');
-        }
+        return $this->redirectToRoute($habit->getType() === 'group' ? 'show_group_habits' : 'show_habits');
     }
 
     #[Route('/habit/delete/{id}', name: 'delete_habit', methods: ['POST'])]
@@ -118,9 +153,11 @@ class HabitController extends AbstractController
         }
 
         $groupHabits = $em->getRepository(Habit::class)->findBy(['group' => $group, 'type' => 'group']);
+        $groupScore = $group->getScore();
 
         return $this->render('habit/group_habits.html.twig', [
             'groupHabits' => $groupHabits,
+            'groupScore' => $groupScore,
         ]);
     }
 }

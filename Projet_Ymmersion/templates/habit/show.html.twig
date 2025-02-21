@@ -5,6 +5,12 @@
 {% block body %}
     <h1>My Habits 🎀📋✨</h1>
 
+    {% if userPoints is defined %}
+        <h2>Your Score: {{ userPoints }}</h2>
+    {% else %}
+        <h2>Your Score: 0</h2>
+    {% endif %}
+
     {% set colors = ['color1', 'color2', 'color3', 'color4', 'color5'] %}
 
     <ul class="habit-list">
